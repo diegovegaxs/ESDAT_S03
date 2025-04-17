@@ -16,6 +16,7 @@ namespace listaDoble {
             if (this.Primero == null)
             {
                 this.Primero = nuevo;
+                this.Ultimo = nuevo;
             }
             else
             {
@@ -95,7 +96,7 @@ namespace listaDoble {
         {
             if (this.Primero == null) 
             {
-                return;
+                return ;
             }
             else if (this.Primero == this.Ultimo)
             {
@@ -107,6 +108,39 @@ namespace listaDoble {
                 this.Primero = this.Primero.Sig;
                 this.Primero.Ant = null;
             }
+        }
+        public void EliminarUltimo()
+        {
+            if (this.Ultimo == null)
+            {
+                return ;
+            }
+            else if (this.Primero == this.Ultimo)
+            {
+                this.Primero = null;
+                this.Ultimo = null;
+            }
+            else
+            {
+                Nodo actual = this.Primero;
+                while (actual.Sig != this.Ultimo) 
+                {
+                    actual = actual.Sig;
+                }
+                actual.Sig = null;
+                this.Ultimo = actual;
+            }
+        }
+        public string VerUltimoAlPrimero()
+        {
+            string listaVag = "";
+            Nodo tmp = this.Ultimo;
+            while (tmp != null)
+            {
+                listaVag += tmp.Dato + ", ";
+                tmp = tmp.Ant;
+            }
+            return listaVag;
         }
     }
 }
